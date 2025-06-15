@@ -3,12 +3,12 @@ import type { TabsFactory } from './Tabs';
 
 export interface TabsContextValue {
   id: string;
-  value: string | null;
+  value: string[] | null;
   orientation: 'horizontal' | 'vertical' | undefined;
   loop: boolean | undefined;
   activateTabWithKeyboard: boolean | undefined;
   allowTabDeactivation: boolean | undefined;
-  onChange: (value: string | null) => void;
+  onChange: (value: string[] | null) => void;
   getTabId: (value: string) => string;
   getPanelId: (value: string) => string;
   variant: string | undefined;
@@ -19,6 +19,7 @@ export interface TabsContextValue {
   placement: 'right' | 'left' | undefined;
   unstyled: boolean | undefined;
   getStyles: GetStylesApi<TabsFactory>;
+  multi: boolean | undefined;
 }
 
 export const [TabsProvider, useTabsContext] = createSafeContext<TabsContextValue>(

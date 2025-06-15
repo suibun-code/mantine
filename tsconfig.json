@@ -23,8 +23,9 @@
     "./packages/@mantinex/*/cjs/**/*",
     "./packages/@mantinex/*/lib/**/*"
   ],
+  "declaration": true,
   "compilerOptions": {
-    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "types": ["node", "jest", "@testing-library/jest-dom", "./packages/@mantine/*/src/types.d.ts"],
     "target": "ES2015",
     "lib": ["DOM", "ESNext"],
     "module": "ESNext",

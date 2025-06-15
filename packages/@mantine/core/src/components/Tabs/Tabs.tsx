@@ -39,13 +39,13 @@ export interface TabsProps
     StylesApiProps<TabsFactory>,
     ElementProps<'div', 'defaultValue' | 'value' | 'onChange'> {
   /** Default value for uncontrolled component */
-  defaultValue?: string | null;
+  defaultValue?: string[] | null;
 
   /** Value for controlled component */
-  value?: string | null;
+  value?: string[] | null;
 
   /** Called when value changes */
-  onChange?: (value: string | null) => void;
+  onChange?: (value: string[] | null) => void;
 
   /** Tabs orientation, `'horizontal'` by default */
   orientation?: 'vertical' | 'horizontal';
@@ -82,6 +82,8 @@ export interface TabsProps
 
   /** Determines whether active item text color should depend on `background-color` of the indicator. If luminosity of the `color` prop is less than `theme.luminosityThreshold`, then `theme.white` will be used for text color, otherwise `theme.black`. Overrides `theme.autoContrast`. Only applicable when `variant="pills"` */
   autoContrast?: boolean;
+
+  multi?: boolean;
 }
 
 export type TabsFactory = Factory<{
@@ -107,6 +109,7 @@ const defaultProps = {
   activateTabWithKeyboard: true,
   variant: 'default',
   placement: 'left',
+  multi: false,
 } satisfies Partial<TabsProps>;
 
 const varsResolver = createVarsResolver<TabsFactory>((theme, { radius, color, autoContrast }) => ({
@@ -144,6 +147,7 @@ export const Tabs = factory<TabsFactory>((_props, ref) => {
     style,
     vars,
     autoContrast,
+    multi,
     mod,
     ...others
   } = props;
@@ -153,7 +157,7 @@ export const Tabs = factory<TabsFactory>((_props, ref) => {
   const [currentTab, setCurrentTab] = useUncontrolled({
     value,
     defaultValue,
-    finalValue: null,
+    finalValue: [],
     onChange,
   });
 
@@ -190,6 +194,7 @@ export const Tabs = factory<TabsFactory>((_props, ref) => {
         keepMounted,
         unstyled,
         getStyles,
+        multi,
       }}
     >
       <Box

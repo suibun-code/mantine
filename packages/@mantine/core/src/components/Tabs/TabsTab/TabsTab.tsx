@@ -69,9 +69,23 @@ export const TabsTab = factory<TabsTabFactory>((_props, ref) => {
   const theme = useMantineTheme();
   const { dir } = useDirection();
   const ctx = useTabsContext();
-  const active = value === ctx.value;
+
+  const active = ctx.value?.includes(value);
+
   const activateTab = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    ctx.onChange(ctx.allowTabDeactivation ? (value === ctx.value ? null : value) : value);
+    const currentValues: string[] = ctx.value || [];
+    const isActive = currentValues.includes(value);
+    let newValues = [];
+    if (ctx.multi) {
+      newValues = isActive
+        ? currentValues.filter((val: any) => val !== value)
+        : [...currentValues, value];
+    } else {
+      newValues = ctx.allowTabDeactivation
+        ? currentValues.filter((val: any) => val !== value)
+        : [value];
+    }
+    ctx.onChange(newValues);
     onClick?.(event);
   };
 

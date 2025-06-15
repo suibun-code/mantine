@@ -58,12 +58,12 @@ const verticalBase = (
   </>
 );
 
-const Wrapper = (props: TabsProps) => <Tabs maw={500} mx="auto" mt={40} {...props} />;
+const Wrapper = (props: TabsProps) => <Tabs multi maw={500} mx="auto" mt={40} {...props} />;
 
 export function Horizontal() {
   return (
     <div style={{ padding: 40 }}>
-      <Tabs defaultValue="react" orientation="horizontal">
+      <Tabs multi defaultValue={['react']} orientation="horizontal">
         {base}
       </Tabs>
     </div>
@@ -73,17 +73,17 @@ export function Horizontal() {
 export function DefaultVariant() {
   return (
     <div>
-      <Wrapper defaultValue="react">{base}</Wrapper>
+      <Wrapper defaultValue={['react']}>{base}</Wrapper>
 
-      <Wrapper defaultValue="react" inverted>
+      <Wrapper defaultValue={['react']} inverted>
         {base}
       </Wrapper>
 
-      <Wrapper color="orange" defaultValue="react" orientation="vertical">
+      <Wrapper color="green" defaultValue={['react']} orientation="vertical">
         {base}
       </Wrapper>
 
-      <Wrapper color="orange" defaultValue="react" orientation="vertical" placement="right">
+      <Wrapper color="red" defaultValue={['react']} orientation="vertical" placement="right">
         {base}
       </Wrapper>
     </div>
@@ -93,19 +93,19 @@ export function DefaultVariant() {
 export function OutlineVariant() {
   return (
     <div>
-      <Wrapper variant="outline" defaultValue="react">
+      <Wrapper variant="outline" defaultValue={['react']}>
         {base}
       </Wrapper>
 
-      <Wrapper variant="outline" defaultValue="react" inverted>
+      <Wrapper variant="outline" defaultValue={['react']} inverted>
         {base}
       </Wrapper>
 
-      <Wrapper variant="outline" defaultValue="react" orientation="vertical">
+      <Wrapper variant="outline" defaultValue={['react']} orientation="vertical">
         {base}
       </Wrapper>
 
-      <Wrapper variant="outline" defaultValue="react" orientation="vertical" placement="right">
+      <Wrapper variant="outline" defaultValue={['react']} orientation="vertical" placement="right">
         {base}
       </Wrapper>
     </div>
@@ -115,22 +115,22 @@ export function OutlineVariant() {
 export function PillsVariant() {
   return (
     <div>
-      <Wrapper variant="pills" color="lime.4" defaultValue="react" autoContrast>
+      <Wrapper variant="pills" color="lime.4" defaultValue={['react']} autoContrast>
         {base}
       </Wrapper>
 
-      <Wrapper variant="pills" color="green.9" defaultValue="react" inverted>
+      <Wrapper variant="pills" color="green.9" defaultValue={['react']} inverted>
         {base}
       </Wrapper>
 
-      <Wrapper variant="pills" color="green.9" defaultValue="react" orientation="vertical">
+      <Wrapper variant="pills" color="green.9" defaultValue={['react']} orientation="vertical">
         {base}
       </Wrapper>
 
       <Wrapper
         variant="pills"
         color="green.9"
-        defaultValue="react"
+        defaultValue={['react']}
         orientation="vertical"
         placement="right"
       >
@@ -141,13 +141,13 @@ export function PillsVariant() {
 }
 
 export const NoLoop = () => (
-  <Wrapper defaultValue="react" loop={false}>
+  <Wrapper defaultValue={['react']} loop={false}>
     {base}
   </Wrapper>
 );
 
 export const NoKeyboardActivation = () => (
-  <Wrapper defaultValue="react" activateTabWithKeyboard={false}>
+  <Wrapper defaultValue={['react']} activateTabWithKeyboard={false}>
     {base}
   </Wrapper>
 );
@@ -155,13 +155,13 @@ export const NoKeyboardActivation = () => (
 export const NoDefaultValue = () => <Wrapper defaultValue={null}>{base}</Wrapper>;
 
 export const AllowDeactivation = () => (
-  <Wrapper defaultValue="react" allowTabDeactivation>
+  <Wrapper defaultValue={['react']} allowTabDeactivation>
     {base}
   </Wrapper>
 );
 
 export const Controlled = () => {
-  const [tab, setTab] = useState<string | null>('react');
+  const [tab, setTab] = useState<string[] | null>(['react']);
   return (
     <Wrapper value={tab} onChange={setTab} allowTabDeactivation>
       {base}
@@ -170,7 +170,7 @@ export const Controlled = () => {
 };
 
 export const Grow = () => (
-  <Wrapper defaultValue="react">
+  <Wrapper defaultValue={['react']}>
     <Tabs.List grow>
       <Tabs.Tab value="react" color="red">
         React
@@ -190,15 +190,15 @@ export const Grow = () => (
 
 export const Variants = () => (
   <div style={{ maxWidth: 500, padding: 40 }}>
-    <Wrapper defaultValue="react" variant="default" mt={10} mb={50} radius="md">
+    <Wrapper defaultValue={['react']} variant="default" mt={10} mb={50} radius="md">
       {base}
     </Wrapper>
 
-    <Wrapper defaultValue="react" variant="outline" mt={10} mb={50} radius="md">
+    <Wrapper defaultValue={['react']} variant="outline" mt={10} mb={50} radius="md">
       {base}
     </Wrapper>
 
-    <Wrapper defaultValue="react" variant="pills" mt={10} radius="md">
+    <Wrapper defaultValue={['react']} variant="pills" mt={10} radius="md">
       {base}
     </Wrapper>
   </div>
@@ -207,7 +207,7 @@ export const Variants = () => (
 export const VerticalVariants = () => (
   <div style={{ maxWidth: 600, padding: 40 }}>
     <Wrapper
-      defaultValue="react"
+      defaultValue={['react']}
       orientation="vertical"
       variant="default"
       mt={10}
@@ -218,7 +218,7 @@ export const VerticalVariants = () => (
     </Wrapper>
 
     <Wrapper
-      defaultValue="react"
+      defaultValue={['react']}
       orientation="vertical"
       variant="outline"
       mt={10}
@@ -228,7 +228,7 @@ export const VerticalVariants = () => (
       {verticalBase}
     </Wrapper>
 
-    <Wrapper defaultValue="react" orientation="vertical" variant="pills" mt={10} radius="md">
+    <Wrapper defaultValue={['react']} orientation="vertical" variant="pills" mt={10} radius="md">
       {verticalBase}
     </Wrapper>
   </div>
@@ -237,7 +237,7 @@ export const VerticalVariants = () => (
 export const VerticalPlacement = () => (
   <div style={{ maxWidth: 500, padding: 40 }}>
     <Wrapper
-      defaultValue="react"
+      defaultValue={['react']}
       orientation="vertical"
       variant="default"
       mt={10}
@@ -249,7 +249,7 @@ export const VerticalPlacement = () => (
     </Wrapper>
 
     <Wrapper
-      defaultValue="react"
+      defaultValue={['react']}
       orientation="vertical"
       variant="outline"
       mt={10}
@@ -261,7 +261,7 @@ export const VerticalPlacement = () => (
     </Wrapper>
 
     <Wrapper
-      defaultValue="react"
+      defaultValue={['react']}
       orientation="vertical"
       variant="pills"
       mt={10}
@@ -274,7 +274,7 @@ export const VerticalPlacement = () => (
 );
 
 export const WithIcon = () => (
-  <Wrapper defaultValue="react" variant="outline">
+  <Wrapper defaultValue={['react']} variant="outline">
     <Tabs.List>
       <Tabs.Tab value="react" leftSection={<IconPackage size={14} />} />
       <Tabs.Tab value="sv" rightSection={<span>right</span>}>
@@ -299,7 +299,7 @@ export const WithIcon = () => (
 );
 
 export const Unstyled = () => (
-  <Wrapper defaultValue="react" unstyled>
+  <Wrapper defaultValue={['react']} unstyled>
     {base}
   </Wrapper>
 );
@@ -335,7 +335,7 @@ export const DynamicTabs = () => {
 };
 
 export const Inverted = () => (
-  <Wrapper defaultValue="react" variant="outline" inverted>
+  <Wrapper defaultValue={['react']} variant="outline" inverted>
     <Tabs.Panel value="react" pb="sm">
       React Panel
     </Tabs.Panel>

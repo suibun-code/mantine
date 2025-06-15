@@ -42,7 +42,7 @@ export const TabsPanel = factory<TabsPanelFactory>((_props, ref) => {
 
   const ctx = useTabsContext();
 
-  const active = ctx.value === value;
+  const active = ctx.value?.includes(value);
   const content = ctx.keepMounted || keepMounted ? children : active ? children : null;
 
   return (
